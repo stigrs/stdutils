@@ -1,4 +1,4 @@
-# stdutils
+# stdutils [![Build Status](https://travis-ci.org/stigrs/stdutils.svg?branch=master)](https://travis-ci.org/stdutils/numlib)[![Build status](https://ci.appveyor.com/api/projects/status/github/stigrs/stdutils?svg=true)](https://ci.appveyor.com/project/stigrs/stdutils)
 
 Stdutils extends the C++ standard library with a few utility methods.
 
