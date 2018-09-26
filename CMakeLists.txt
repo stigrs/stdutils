@@ -47,7 +47,7 @@ target_include_directories(stdutils_config INTERFACE
 )
 
 install(
-    DIRECTORY include/numlib
+    DIRECTORY include/stdutils
     DESTINATION include
     FILES_MATCHING PATTERN "*.h"
 )
