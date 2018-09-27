@@ -59,10 +59,10 @@ inline int find_section(std::istream& from, std::string key)
 // Get token value from input stream.
 template <typename T>
 inline void get_token_value(std::istream& from,
+                            int pos,
                             std::string token,
                             T& value,
-                            const T& def = T{},
-                            int pos)
+                            const T& def = T{})
 {
     value = def;     // assign default value
     from.seekg(pos); // search from starting pos
