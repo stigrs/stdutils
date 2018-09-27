@@ -58,6 +58,7 @@ inline void get_token_value(std::istream& from,
     while (from >> buf) {
         if (buf == token) {
             from >> value;
+            break;
         }
     }
 }
