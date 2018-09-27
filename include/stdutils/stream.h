@@ -43,9 +43,9 @@ inline void fopen(std::ofstream& to,
 }
 
 // Find section in input stream.
-inline int find_section(std::istream& from, std::string key)
+inline std::streamoff find_section(std::istream& from, std::string key)
 {
-    int pos = 0;
+    std::streamoff pos = 0;
     std::string buf;
     while (from >> buf) {
         if (buf == key) {
@@ -59,7 +59,7 @@ inline int find_section(std::istream& from, std::string key)
 // Get token value from input stream.
 template <typename T>
 inline void get_token_value(std::istream& from,
-                            int pos,
+                            std::streamoff pos,
                             std::string token,
                             T& value,
                             const T& def = T{})
