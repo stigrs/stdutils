@@ -42,17 +42,30 @@ inline void fopen(std::ofstream& to,
     }
 }
 
+// Find section in input stream.
+inline int find_section(std::istream& from, std::string key)
+{
+    int pos = 0;
+    std::string buf;
+    while (from >> buf) {
+        if (buf == key) {
+            pos = from.tellg();
+            break;
+        }
+    }
+    return pos;
+}
+
 // Get token value from input stream.
 template <typename T>
 inline void get_token_value(std::istream& from,
                             std::string token,
                             T& value,
-                            const T& def = T{})
+                            const T& def = T{},
+                            int pos)
 {
-    value = def; // assign default value
-
-    from.clear();
-    from.seekg(0, std::ios_base::beg); // search from the start of the stream
+    value = def;     // assign default value
+    from.seekg(pos); // search from starting pos
 
     std::string buf;
     while (from >> buf) {
