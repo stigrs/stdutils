@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.4.3)
 project(stdutils_tests CXX)
 
-list(APPEND CATCH_CMAKE_ARGS
-    "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/external"
-    "-DCATCH_BUILD_TESTING=OFF"
-)
+include_directories(${stdutils_SOURCE_DIR}/include)
 
 if(GIT_FOUND)
     # Add catch
+    list(APPEND CATCH_CMAKE_ARGS
+        "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/external"
+        "-DCATCH_BUILD_TESTING=OFF"
+    )
     ExternalProject_Add(
         catch2
         PREFIX ${CMAKE_BINARY_DIR}/catch
@@ -22,7 +23,7 @@ else()
     add_custom_target(catch2)
 endif()
 
-# Prepare "Catch" library for other executables.
+# Prepare Catch library for other executables.
 add_library(Catch2 INTERFACE)
 target_include_directories(
     Catch2 INTERFACE 
@@ -35,7 +36,6 @@ target_link_libraries(
     test_catch2
     Catch2
 )
-
 add_dependencies(test_catch2 catch2)
 
 function(add_stdutils_test name)
@@ -43,7 +43,6 @@ function(add_stdutils_test name)
     target_link_libraries (
         ${name} 
         test_catch2
-        stdutils_config
     ) 
     add_dependencies(${name} Catch2)
     add_test(NAME ${name} COMMAND ${name})

@@ -31,20 +31,6 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG "/std:c++14 /EHsc /W4 /WX /wd4100 /MT /GR /Zi /Od")
 endif()
 
-# Create stdutils interface library.
-add_library(stdutils_config INTERFACE)
-target_include_directories(stdutils_config INTERFACE
-    $<BUILD_INTERFACE:
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-    >
-)
-
-install(
-    DIRECTORY include/stdutils
-    DESTINATION include
-    FILES_MATCHING PATTERN "*.h"
-)
-
 # Enable testing.
 option(BUILD_TESTS "Build tests." ON)
 
@@ -52,3 +38,10 @@ if(BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+# Install target.
+install(
+    DIRECTORY include/stdutils
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.h"
+)

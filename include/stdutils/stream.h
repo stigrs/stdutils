@@ -45,7 +45,7 @@ inline void fopen(std::ofstream& to,
 // Find section in input stream.
 inline std::streamoff find_section(std::istream& from, std::string key)
 {
-    std::streamoff pos = 0;
+    std::streamoff pos = std::ios_base::end;
     std::string buf;
     while (from >> buf) {
         if (buf == key) {
