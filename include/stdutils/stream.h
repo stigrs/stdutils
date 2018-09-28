@@ -42,17 +42,17 @@ inline void fopen(std::ofstream& to,
     }
 }
 
-// Find section in input stream.
-inline std::streamoff find_section(std::istream& from, std::string key)
+// Find token in input stream.
+inline std::streamoff find_token(std::istream& from, std::string token)
 {
-    std::streamoff pos = 0;
+    std::streamoff pos = -1;
 
     from.clear();                        // needed for VS2017
     from.seekg(pos, std::ios_base::beg); // search from beginning of file
 
     std::string buf;
     while (from >> buf) {
-        if (buf == key) {
+        if (buf == token) {
             pos = from.tellg();
             break;
         }
