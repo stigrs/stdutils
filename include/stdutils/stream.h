@@ -45,7 +45,6 @@ inline void fopen(std::ofstream& to,
 // Find section in input stream.
 inline std::streamoff find_section(std::istream& from, std::string key)
 {
-    bool found = false;
     std::streamoff pos = 0;
 
     std::string buf;
@@ -66,9 +65,8 @@ inline void get_token_value(std::istream& from,
                             T& value,
                             const T& def = T{})
 {
-    value = def; // assign default value
-    from.clear();
-    from.seekg(pos, std::ios_base::beg); // search from starting pos
+    value = def;     // assign default value
+    from.seekg(pos); // search from starting pos
 
     std::string buf;
     while (from >> buf) {
