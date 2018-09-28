@@ -51,8 +51,10 @@ inline std::streamoff find_section(std::istream& from, std::string key)
     std::string buf;
     while (from >> buf) {
         if (buf == key) {
+            std::cout << buf << std::endl;
             found = true;
             pos = from.tellg();
+            std::cout << pos << std::endl;
             break;
         }
     }
