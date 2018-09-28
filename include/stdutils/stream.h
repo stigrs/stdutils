@@ -65,7 +65,9 @@ inline void get_token_value(std::istream& from,
                             T& value,
                             const T& def = T{})
 {
-    value = def;                         // assign default value
+    value = def; // assign default value
+
+    from.clear();                        // should not be needed with C++11 ...
     from.seekg(pos, std::ios_base::beg); // search from starting pos
 
     std::string buf;
