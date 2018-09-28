@@ -65,8 +65,8 @@ inline void get_token_value(std::istream& from,
                             T& value,
                             const T& def = T{})
 {
-    value = def;     // assign default value
-    from.seekg(pos); // search from starting pos
+    value = def;                         // assign default value
+    from.seekg(pos, std::ios_base::beg); // search from starting pos
 
     std::string buf;
     while (from >> buf) {
