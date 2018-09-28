@@ -47,6 +47,9 @@ inline std::streamoff find_section(std::istream& from, std::string key)
 {
     std::streamoff pos = 0;
 
+    from.clear();                        // needed for VS2017
+    from.seekg(pos, std::ios_base::beg); // search from beginning of file
+
     std::string buf;
     while (from >> buf) {
         if (buf == key) {
@@ -67,7 +70,7 @@ inline void get_token_value(std::istream& from,
 {
     value = def; // assign default value
 
-    from.clear();                        // should not be needed with C++11 ...
+    from.clear();                        // needed for VS2017
     from.seekg(pos, std::ios_base::beg); // search from starting pos
 
     std::string buf;
