@@ -6,7 +6,7 @@ include_directories(${stdutils_SOURCE_DIR}/include)
 if(GIT_FOUND)
     # Add catch
     list(APPEND CATCH_CMAKE_ARGS
-        "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/external"
+        "-DCMAKE_INSTALL_PREFIX:STRING=${CMAKE_BINARY_DIR}/external"
         "-DCATCH_BUILD_TESTING=OFF"
     )
     ExternalProject_Add(
