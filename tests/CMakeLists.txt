@@ -3,6 +3,14 @@ project(stdutils_tests CXX)
 
 include_directories(${stdutils_SOURCE_DIR}/include)
 
+# Copy *.inp files to build directory.
+file(GLOB INP_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.inp")
+
+foreach(inp_file_name ${INP_FILES})
+    file(COPY "${inp_file_name}" DESTINATION "${CMAKE_BINARY_DIR}/tests")
+endforeach()
+
 if(GIT_FOUND)
     # Add catch
     list(APPEND CATCH_CMAKE_ARGS

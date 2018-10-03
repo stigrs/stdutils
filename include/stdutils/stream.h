@@ -47,7 +47,7 @@ inline std::streamoff find_token(std::istream& from, std::string token)
 {
     std::streamoff pos = -1;
 
-    from.clear();                      // needed for VS2017
+    // from.clear();                      // needed for VS2017
     from.seekg(0, std::ios_base::beg); // search from beginning of file
 
     std::string buf;
@@ -70,8 +70,8 @@ inline void get_token_value(std::istream& from,
 {
     value = def; // assign default value
 
-    from.clear();                        // needed for VS2017
-    from.seekg(pos, std::ios_base::beg); // search from starting pos
+    // from.clear();    // needed for VS2017
+    from.seekg(pos); // search from starting pos
 
     std::string buf;
     while (from >> buf) {
