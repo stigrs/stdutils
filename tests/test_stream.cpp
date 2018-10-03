@@ -46,15 +46,21 @@ TEST_CASE("test_stream")
         double d = 0.0;
         std::complex<double> cx;
         std::complex<double> cx_ans{2.0, 1.0};
+        std::string s;
 
         auto pos = find_token(from, "ParseThis");
         if (pos != -1) {
             get_token_value(from, pos, "integer", i, 100);
             get_token_value(from, pos, "double", d, 20.0);
             get_token_value(from, pos, "complex", cx);
+            pos = find_token(from, "SubSection", pos);
+            if (pos != -1) {
+                get_token_value(from, pos, "string", s, s);
+            }
         }
-        CHECK(i == 10);
+        CHECK(i == 100);
         CHECK(std::abs(d - 2.0) < 1.0e-12);
         CHECK(cx == cx_ans);
+        CHECK(s == "world");
     }
 }

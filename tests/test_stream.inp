@@ -5,13 +5,19 @@ IgnoreThis
     0.2
   complex
     (1.0, 0.0)
+  SubSection
+    string
+      hello
+  End
 End
 
 ParseThis
-  integer 
-    10
   double
     2.0
   complex
     (2.0, 1.0)
+  SubSection
+    string
+      world
+  End
 End

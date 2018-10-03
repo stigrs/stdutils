@@ -43,11 +43,14 @@ inline void fopen(std::ofstream& to,
 }
 
 // Find token in input stream.
-inline std::streamoff find_token(std::istream& from, std::string token)
+inline std::streamoff find_token(std::istream& from,
+                                 const std::string& token,
+                                 const std::streamoff& off = 0)
 {
     std::streamoff pos = -1;
 
-    from.seekg(0, std::ios_base::beg); // search from beginning of file
+    from.clear();
+    from.seekg(off, std::ios_base::beg); // search from offset
 
     std::string buf;
     while (from >> buf) {
@@ -62,14 +65,15 @@ inline std::streamoff find_token(std::istream& from, std::string token)
 // Get token value from input stream.
 template <typename T>
 inline void get_token_value(std::istream& from,
-                            std::streamoff pos,
-                            std::string token,
+                            const std::streamoff& pos,
+                            const std::string& token,
                             T& value,
                             const T& def = T{})
 {
     value = def; // assign default value
 
-    from.seekg(pos); // search from starting pos
+    from.clear();
+    from.seekg(pos, std::ios_base::beg); // search from given position
 
     std::string buf;
     while (from >> buf) {
