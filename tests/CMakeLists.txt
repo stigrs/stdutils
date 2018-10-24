@@ -57,6 +57,7 @@ function(add_stdutils_test name)
 endfunction()
 
 set(PROGRAMS 
+    test_assert
     test_format
     test_stream
     test_string
