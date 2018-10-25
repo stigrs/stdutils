@@ -27,7 +27,11 @@
 #endif
 
 #ifndef ASSERT_LEVEL
+#ifdef NDEBUG
 #define ASSERT_LEVEL 1
+#else
+#define ASSERT_LEVEL 2
+#endif
 #endif
 
 namespace Assert {
@@ -37,13 +41,14 @@ constexpr Mode current_mode = ASSERT_MODE;
 constexpr int current_level = ASSERT_LEVEL;
 constexpr int default_level = 1;
 
-constexpr bool level(int n) { return n <= current_level; }
+inline constexpr bool level(int n) { return n <= current_level; }
 
 struct Error : std::runtime_error {
     Error(const std::string& p) : std::runtime_error(p) {}
 };
 
-std::string compose(const char* file, int line, const std::string& message)
+inline std::string
+compose(const char* file, int line, const std::string& message)
 {
     std::ostringstream os;
     os << "Failure at " << file << ", line " << line << ": " << message;
@@ -51,8 +56,8 @@ std::string compose(const char* file, int line, const std::string& message)
 }
 
 template <bool condition = level(default_level), typename Except = Error>
-void dynamic(bool assertion,
-             const std::string& message = "Assert::dynamic failed")
+inline void dynamic(bool assertion,
+                    const std::string& message = "Assert::dynamic failed")
 {
     if (assertion) {
         return;
@@ -71,23 +76,23 @@ void dynamic(bool assertion,
 }
 
 template <>
-void dynamic<false, Error>(bool, const std::string&)
+inline void dynamic<false, Error>(bool, const std::string&)
 { // do nothing
 }
 
-void dynamic(bool b, const std::string& s)
+inline void dynamic(bool b, const std::string& s)
 { // default action
     dynamic<true, Error>(b, s);
 }
 
-void dynamic(bool b)
+inline void dynamic(bool b)
 { // default message
     dynamic<true, Error>(b);
 }
 
 } // namespace Assert
 
-#ifdef _MSC_vER
+#ifdef _MSC_VER
 #pragma warning(pop)
 #endif
 
