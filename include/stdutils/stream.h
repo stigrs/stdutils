@@ -58,6 +58,9 @@ inline std::streamoff find_token(std::istream& from,
             pos = from.tellg();
             break;
         }
+        if (buf == "End") {
+            break;
+        }
     }
     return pos;
 }
@@ -79,6 +82,9 @@ inline void get_token_value(std::istream& from,
     while (from >> buf) {
         if (buf == token) {
             from >> value;
+            break;
+        }
+        if (buf == "End") {
             break;
         }
     }
