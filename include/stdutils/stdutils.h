@@ -7,6 +7,7 @@
 #ifndef STDUTILS_H
 #define STDUTILS_H
 
+#include <stdutils/arguments.h>
 #include <stdutils/assert.h>
 #include <stdutils/format.h>
 #include <stdutils/stream.h>
