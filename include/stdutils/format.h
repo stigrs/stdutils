@@ -10,7 +10,8 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <chrono>
+#include <string>
+#include <cmath>
 
 namespace Stdutils {
 
@@ -118,6 +119,23 @@ std::ostream& operator<<(std::ostream& to, const Bound_form<T>& bf)
 
     s << std::setiosflags(bf.f.fmt) << bf.v;
     return to << s.str();
+}
+
+//------------------------------------------------------------------------------
+//
+// Time format methods:
+
+// Format time in seconds to HH:MM:SS format.
+inline std::string timefmt(double time)
+{
+    int tt = std::trunc(time);
+    auto hh = tt / 3600;
+    auto mm = tt / 60 % 60;
+    auto ss = tt % 60 + time - tt;
+
+    std::ostringstream oss;
+    oss << hh << ":" << mm << ":" << ss;
+    return oss.str();
 }
 
 } // namespace Stdutils
