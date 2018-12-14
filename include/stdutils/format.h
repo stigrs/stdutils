@@ -128,7 +128,7 @@ std::ostream& operator<<(std::ostream& to, const Bound_form<T>& bf)
 // Format time in seconds to HH:MM:SS format.
 inline std::string timefmt(double time)
 {
-    int tt = std::trunc(time);
+    int tt = static_cast<int>(std::trunc(time));
     auto hh = tt / 3600;
     auto mm = tt / 60 % 60;
     auto ss = tt % 60 + time - tt;
