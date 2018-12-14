@@ -120,28 +120,6 @@ std::ostream& operator<<(std::ostream& to, const Bound_form<T>& bf)
     return to << s.str();
 }
 
-//------------------------------------------------------------------------------
-//
-// Time format methods:
-
-template <typename Duration, typename Tfirst, typename... Trest>
-std::string fmt_duration(Duration d)
-{
-    auto val = std::chrono::duration_cast<Tfirst>(d);
-    std::string res = std::to_string(val.count());
-
-    if (/* constexpr */ sizeof...(Trest) > 0) {
-        res += ":" + fmt_duration<Duration, Trest...>(d - val);
-    }
-    return res;
-}
-
-template <typename Duration>
-std::string fmt_duration(Duration d)
-{
-    return {};
-}
-
 } // namespace Stdutils
 
 #endif // STDUTILS_FORMAT_H
