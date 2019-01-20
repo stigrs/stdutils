@@ -18,27 +18,6 @@ namespace Stdutils {
 //
 // String utility methods:
 
-// Simple convert to string method.
-template <typename T>
-inline std::string to_string(const T& t)
-{
-    std::ostringstream oss;
-    oss << t;
-    return oss.str();
-}
-
-// Simple extract from string method.
-template <typename T>
-inline T from_string(const std::string& s)
-{
-    std::istringstream iss(s);
-    T t;
-    if (!(iss >> t)) {
-        throw std::runtime_error("bad cast from string '" + s + "'");
-    }
-    return t;
-}
-
 // Convert Fortran scientific D format to double.
 inline double from_fortran_sci_fmt(const std::string& s)
 {
@@ -47,7 +26,7 @@ inline double from_fortran_sci_fmt(const std::string& s)
     if (pos != std::string::npos) {
         ss.replace(pos, 1, 1, 'e');
     }
-    return from_string<double>(ss);
+    return std::stod(ss);
 }
 
 // Trim leading and trailing characters from string.

@@ -12,18 +12,6 @@ TEST_CASE("test_string")
 {
     using namespace Stdutils;
 
-    SECTION("to_string")
-    {
-        std::string s = to_string<double>(3.14);
-        CHECK(s == "3.14");
-    }
-
-    SECTION("from_string")
-    {
-        double d = from_string<double>("3.14");
-        CHECK(d == 3.14);
-    }
-
     SECTION("from_fortran_sci_fmt")
     {
         double d = from_fortran_sci_fmt("3.14D-3");
