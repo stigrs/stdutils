@@ -28,3 +28,10 @@ steps:
     cmakeArgs: "--build . --config Debug"
     runInsideShell: true
     workingDirectory: build
+
+- task: CMake@1
+  inputs:
+    cmakeArgs: "ctest -C Debug"
+    runInsideShell: true
+    workingDirectory: build
+    
