@@ -18,20 +18,20 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 - task: CMake@1
+  name: Configure
   inputs:
     cmakeArgs: ".."
     runInsideShell: true
     workingDirectory: build
 
 - task: CMake@1
+  name: Build
   inputs:
     cmakeArgs: "--build . --config Debug"
     runInsideShell: true
     workingDirectory: build
 
-- task: CMake@1
-  inputs:
-    cmakeArgs: ". ctest -C Debug"
-    runInsideShell: true
-    workingDirectory: build
-    
+- script: ctest . --output-on-failure --no-compress-output
+  name: CTest 
+  workingDirectory: build
+  failOnStderr: true
