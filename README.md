@@ -25,12 +25,12 @@ file for details regarding the licensing of Catch2.
 
 ### Supported Compilers
 
-| Compiler      | Toolset Versions Currently Tested |
-|:--------------|----------------------------------:|
-| GCC           | 9 & 8                             |
-| Clang         | 11 & 10                           |
-| Visual Studio | VS2019 & VS2017                   |
-| XCode         | 11.4 & 10.3                       |
+| Compiler      | Versions Currently Tested |
+|:--------------|--------------------------:|
+| GCC           | 9 & 8                     |
+| Clang         | 11 & 10                   |
+| Visual Studio | VS2019 & VS2017           |
+| XCode         | 11.4 & 10.3               |
 
 ### Obtaining the Source Code
 
