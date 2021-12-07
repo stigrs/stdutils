@@ -4,7 +4,7 @@ parameters:
 
 jobs:
 - job:
-  displayName: ${{ parameters.imageName }}
+  displayName: ${{ parameters.imageName }} 
   pool:
     vmImage: ${{ parameters.imageName }}
   strategy:
@@ -14,6 +14,7 @@ jobs:
       release:
         BUILD_TYPE: 'Release'
   continueOnError: false
+
   steps:
   - task: CMake@1
     name: Configure

@@ -3,34 +3,30 @@
 
 Stdutils extends the C++ standard library with a few utility methods.
 
-## Code of Conduct
-
-This project has adopted the [Covenant Code of Conduct](CODE_OF_CONDUCT.md).
-
 ## Licensing
 
 Stdutils is released under the [MIT](LICENSE) license.
 
 ## Usage of Third Party Libraries
 
-This project makes use of the [Catch2](https://github.com/catchorg/Catch2)
-testing library. Please see the [ThirdPartyNotices.txt](ThirdPartyNotices.txt) 
-file for details regarding the licensing of Catch2.
+This project makes use of [GoogleTest](https://github.com/google/googletest). 
+Please see the [ThirdPartyNotices.txt](ThirdPartyNotices.txt) file for details 
+regarding the licensing of GoogleTest.
 
 ## Quick Start
 
 ### Requirements
 
-* [CMake](https://cmake.org) 3.4.3
+* [CMake](https://cmake.org) 3.14
 
 ### Supported Compilers
 
-| Compiler      | Versions Currently Tested |
-|:--------------|--------------------------:|
-| GCC           | 9 & 8                     |
-| Clang         | 11 & 10                   |
-| Visual Studio | VS2019 & VS2017           |
-| XCode         | 11.4 & 10.3               |
+| Compiler      | Versions Tested |
+|:--------------|----------------:|
+| GCC           | 9               |
+| Clang         | 11              |
+| Visual Studio | VS2019          |
+| XCode         | 13.0            |
 
 ### Obtaining the Source Code
 
@@ -52,7 +48,7 @@ into a directory called `stdutils`.
 2. Configure CMake to use the compiler of your choice (you can see a list by
    running `cmake --help`):
 
-        cmake -G "Visual Studio 15 2017" ..
+        cmake -G "Visual Studio 16 2019" ..
 
 3. Build the software (in this case in the Release configuration):
 

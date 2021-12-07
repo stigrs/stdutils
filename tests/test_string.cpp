@@ -5,28 +5,25 @@
 // and conditions.
 
 #include <stdutils/stdutils.h>
-#include <catch2/catch.hpp>
+#include <gtest/gtest.h>
 #include <string>
 
-TEST_CASE("test_string")
+using namespace Stdutils;
+
+TEST(TestString, TestFromFortranSciFmt)
 {
-    using namespace Stdutils;
+    double d = from_fortran_sci_fmt("3.14D-3");
+    EXPECT_TRUE(d == 3.14e-3);
+}
 
-    SECTION("from_fortran_sci_fmt")
-    {
-        double d = from_fortran_sci_fmt("3.14D-3");
-        CHECK(d == 3.14e-3);
-    }
+TEST(TestString, TestStripSuffix)
+{
+    std::string basename = strip_suffix("test.txt", ".txt");
+    EXPECT_TRUE(basename == "test");
+}
 
-    SECTION("strip_suffix")
-    {
-        std::string basename = strip_suffix("test.txt", ".txt");
-        CHECK(basename == "test");
-    }
-
-    SECTION("get_suffix")
-    {
-        std::string suffix = get_suffix("test.txt");
-        CHECK(suffix == ".txt");
-    }
+TEST(TestString, TestGetSuffix)
+{
+    std::string suffix = get_suffix("test.txt");
+    EXPECT_TRUE(suffix == ".txt");
 }

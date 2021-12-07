@@ -5,7 +5,7 @@
 // and conditions.
 
 #include <stdutils/stdutils.h>
-#include <catch2/catch.hpp>
+#include <gtest/gtest.h>
 
 void f(int n)
 {
@@ -13,10 +13,9 @@ void f(int n)
         1 <= n && n < 10, Assert::compose(__FILE__, __LINE__, "out of range"));
 }
 
-TEST_CASE("test_assert")
+TEST(TestStdutils, TestAssert)
 {
-    CHECK_THROWS(f(0));
-    CHECK_THROWS(f(10));
-    CHECK_NOTHROW(f(2));
+    EXPECT_ANY_THROW(f(0));
+    EXPECT_ANY_THROW(f(10));
+    EXPECT_NO_THROW(f(2));
 }
-

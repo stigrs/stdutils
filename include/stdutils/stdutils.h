@@ -9,7 +9,6 @@
 
 #include <stdutils/arguments.h>
 #include <stdutils/assert.h>
-#include <stdutils/format.h>
 #include <stdutils/stream.h>
 #include <stdutils/string.h>
 
