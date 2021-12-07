@@ -7,11 +7,6 @@
 #ifndef STDUTILS_ASSERT_H
 #define STDUTILS_ASSERT_H
 
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4127) // conditional expression is constant
-#endif
-
 #include <stdexcept>
 #include <string>
 #include <sstream>
@@ -62,13 +57,13 @@ inline void dynamic(bool assertion,
     if (assertion) {
         return;
     }
-    if /* constexpr */ (current_mode == Mode::throw_) {
+    if constexpr (current_mode == Mode::throw_) {
         throw Except{message};
     }
-    if /* constexpr */ (current_mode == Mode::terminate_) {
+    if constexpr (current_mode == Mode::terminate_) {
         std::terminate();
     }
-    if /* constexpr */ (current_mode == Mode::ignore_) {
+    if constexpr (current_mode == Mode::ignore_) {
 #ifndef NDEBUG
         std::cerr << message << '\n';
 #endif
@@ -92,9 +87,4 @@ inline void dynamic(bool b)
 
 } // namespace Assert
 
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-
 #endif // STDUTILS_ASSERT_H
-
