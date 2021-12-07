@@ -16,12 +16,8 @@ stages:
   jobs:
   - template: ./pipelines/jobs-linux.yml
     parameters:
-      jobName: 'Validate GCC latest'
-      imageName: ubuntu-20.04
-  - template: ./pipelines/jobs-linux.yml
-    parameters:
-      jobName: 'Validate GCC Previous'
-      imageName: ubuntu-18.04
+      jobName: 'Validate GCC'
+      imageName: ubuntu-latest
 
 # Clang
 - stage: Clang
@@ -34,12 +30,8 @@ stages:
   jobs:
   - template: ./pipelines/jobs-linux.yml
     parameters:
-      jobName: 'Validate Clang latest'
-      imageName: ubuntu-20.04
-  - template: ./pipelines/jobs-linux.yml
-    parameters:
-      jobName: 'Validate Clang Previous'
-      imageName: ubuntu-18.04
+      jobName: 'Validate Clang'
+      imageName: ubuntu-latest
 
 # MSVC
 - stage: MSVC
@@ -49,10 +41,6 @@ stages:
     parameters:
       jobName: 'Validate MSVC latest'
       imageName: windows-latest
-  - template: ./pipelines/jobs-windows.yml
-    parameters:
-      jobName: 'Validate MSVC Previous'
-      imageName: vs2017-win2016
 
 # Apple-Clang
 - stage: Apple_Clang
@@ -61,8 +49,4 @@ stages:
   - template: ./pipelines/jobs-macos.yml
     parameters:
       jobName: 'Validate Apple-Clang latest'
-      imageName: macos-10.15
-  - template: ./pipelines/jobs-macos.yml
-    parameters:
-      jobName: 'Validate Apple-Clang Previous'
-      imageName: macos-10.14
+      imageName: macos-latest
