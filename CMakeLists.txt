@@ -135,34 +135,37 @@ target_include_directories(stdutils INTERFACE
 
 ################################################################################
 
+set(INCLUDE_INSTALL_DIR include CACHE PATH "Installation directory for header files")
+set(LIB_INSTALL_DIR lib CACHE PATH "Installation directory for libraries")
+set(CMAKE_INSTALL_DIR lib/cmake/stdutils CACHE PATH "Installation directory for CMake files")
+
 install(TARGETS stdutils EXPORT StdutilsTargets
-  INCLUDES DESTINATION include
+  INCLUDES DESTINATION ${INCLUDE_INSTALL_DIR}
 )
 
 install(EXPORT StdutilsTargets
     FILE StdutilsTargets.cmake
-    NAMESPACE Stdutils::
-    DESTINATION lib/cmake/stdutils
+    DESTINATION ${CMAKE_INSTALL_DIR}
 )
 
 export(TARGETS stdutils
-    NAMESPACE Stdutils::
     FILE StdutilsTargets.cmake
 )
 
-install(DIRECTORY include/stdutils DESTINATION include)
+install(DIRECTORY include/stdutils DESTINATION ${INCLUDE_INSTALL_DIR})
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(cmake/StdutilsConfig.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake
-  INSTALL_DESTINATION lib/cmake/stdutils
+  INSTALL_DESTINATION ${CMAKE_INSTALL_DIR}
+  PATH_VARS INCLUDE_INSTALL_DIR
 )
 write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake
   COMPATIBILITY SameMajorVersion
 )
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake
-    DESTINATION lib/cmake/stdutils
+    DESTINATION ${CMAKE_INSTALL_DIR}
 )
 
 ################################################################################
