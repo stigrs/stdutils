@@ -128,6 +128,7 @@ endif()
 ################################################################################
 
 add_library(stdutils INTERFACE)
+add_library(Stdutils::Stdutils ALIAS stdutils)
 target_include_directories(stdutils INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
@@ -145,10 +146,12 @@ install(TARGETS stdutils EXPORT StdutilsTargets
 
 install(EXPORT StdutilsTargets
     FILE StdutilsTargets.cmake
+    NAMESPACE Stdutils::
     DESTINATION ${CMAKE_INSTALL_DIR}
 )
 
 export(TARGETS stdutils
+    NAMESPACE Stdutils::
     FILE StdutilsTargets.cmake
 )
 
