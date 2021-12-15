@@ -6,6 +6,10 @@ project(Stdutils
 
 ################################################################################
 
+include(GNUInstallDirs)
+
+################################################################################
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 ################################################################################
@@ -92,12 +96,6 @@ endif()
 # Export compile commands.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(WIN32)
-    option(BUILD_SHARED_LIBS "Compile shared libraries." OFF)
-else()
-    option(BUILD_SHARED_LIBS "Compile shared libraries." ON)
-endif()
-
 # Set default MSVC compiler options to avoid D9025 error.
 if(MSVC)
     set(CMAKE_CXX_FLAGS "/DWIN32 /D_WINDOWS")
@@ -128,44 +126,40 @@ endif()
 ################################################################################
 
 add_library(stdutils INTERFACE)
+add_library(Stdutils::Stdutils ALIAS stdutils)
 target_include_directories(stdutils INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-################################################################################
-
-set(INCLUDE_INSTALL_DIR include CACHE PATH "Installation directory for header files")
-set(LIB_INSTALL_DIR lib CACHE PATH "Installation directory for libraries")
-set(CMAKE_INSTALL_DIR lib/cmake/stdutils CACHE PATH "Installation directory for CMake files")
-
-install(TARGETS stdutils EXPORT StdutilsTargets
-  INCLUDES DESTINATION ${INCLUDE_INSTALL_DIR}
+install(TARGETS stdutils 
+    EXPORT StdutilsTargets
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/stdutils DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(EXPORT StdutilsTargets
     FILE StdutilsTargets.cmake
-    DESTINATION ${CMAKE_INSTALL_DIR}
+    NAMESPACE Stdutils::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/stdutils
 )
-
-export(TARGETS stdutils
-    FILE StdutilsTargets.cmake
-)
-
-install(DIRECTORY include/stdutils DESTINATION ${INCLUDE_INSTALL_DIR})
 
 include(CMakePackageConfigHelpers)
-configure_package_config_file(cmake/StdutilsConfig.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake
-  INSTALL_DESTINATION ${CMAKE_INSTALL_DIR}
-  PATH_VARS INCLUDE_INSTALL_DIR
-)
-write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake
-  COMPATIBILITY SameMajorVersion
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake"
+    COMPATIBILITY AnyNewerVersion
 )
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake
-    DESTINATION ${CMAKE_INSTALL_DIR}
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/StdutilsConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/stdutils
+)
+install(FILES 
+    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake" 
+    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/stdutils
 )
 
 ################################################################################

@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(Stdutils_tests CXX)
 
-include_directories(${Stdutils_SOURCE_DIR}/include)
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -12,6 +10,10 @@ FetchContent_Declare(
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
+if(NOT TARGET Stdutils::Stdutils)
+  find_package(stdutils REQUIRED)
+endif()
 
 # Copy *.inp files to build directory.
 file(GLOB INP_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -25,6 +27,7 @@ function(add_stdutils_test name)
     add_executable(${name} ${name}.cpp)
     target_link_libraries (
         ${name} 
+        Stdutils::Stdutils
         gtest_main
     ) 
     add_test(NAME ${name} COMMAND ${name})
