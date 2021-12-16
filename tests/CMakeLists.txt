@@ -20,7 +20,7 @@ file(GLOB INP_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/*.inp")
 
 foreach(inp_file_name ${INP_FILES})
-    file(COPY "${inp_file_name}" DESTINATION "${PROJECT_BINARY_DIR}/tests")
+    file(COPY "${inp_file_name}" DESTINATION "${CMAKE_BINARY_DIR}/tests")
 endforeach()
 
 function(add_stdutils_test name)

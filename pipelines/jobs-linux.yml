@@ -20,7 +20,7 @@ jobs:
     name: Configure
     inputs:
       workingDirectory: build
-      cmakeArgs: ' .. '
+      cmakeArgs: ' -DBUILD_TESTS=ON .. '
 
   - task: CMake@1
     name: Build
