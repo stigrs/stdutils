@@ -126,7 +126,7 @@ endif()
 ################################################################################
 
 add_library(stdutils INTERFACE)
-add_library(Stdutils::Stdutils ALIAS stdutils)
+add_library(stdutils::stdutils ALIAS stdutils)
 
 target_include_directories(stdutils INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -134,32 +134,32 @@ target_include_directories(stdutils INTERFACE
 )
 
 install(TARGETS stdutils 
-    EXPORT StdutilsTargets
+    EXPORT stdutilsTargets
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/stdutils DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-install(EXPORT StdutilsTargets
-    FILE StdutilsTargets.cmake
-    NAMESPACE Stdutils::
+install(EXPORT stdutilsTargets
+    FILE stdutilsTargets.cmake
+    NAMESPACE stdutils::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/stdutils
 )
 
 include(CMakePackageConfigHelpers)
 
 write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/stdutilsConfigVersion.cmake"
     COMPATIBILITY AnyNewerVersion
 )
 
-configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/StdutilsConfig.cmake.in
-    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake"
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/stdutilsConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/stdutilsConfig.cmake"
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/stdutils
 )
 install(FILES 
-    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfig.cmake" 
-    "${CMAKE_CURRENT_BINARY_DIR}/StdutilsConfigVersion.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/stdutilsConfig.cmake" 
+    "${CMAKE_CURRENT_BINARY_DIR}/stdutilsConfigVersion.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/stdutils
 )
 

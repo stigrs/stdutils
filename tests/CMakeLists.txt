@@ -11,7 +11,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-if(NOT TARGET Stdutils::Stdutils)
+if(NOT TARGET stdutils::stdutils)
   find_package(stdutils REQUIRED)
 endif()
 
@@ -19,7 +19,7 @@ function(add_stdutils_test name)
     add_executable(${name} ${name}.cpp)
     target_link_libraries (
         ${name} 
-        Stdutils::Stdutils
+        stdutils::stdutils
         gtest_main
     ) 
     add_test(NAME ${name} COMMAND ${name})
