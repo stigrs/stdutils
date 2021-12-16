@@ -15,14 +15,6 @@ if(NOT TARGET Stdutils::Stdutils)
   find_package(stdutils REQUIRED)
 endif()
 
-# Copy *.inp files to build directory.
-file(GLOB INP_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.inp")
-
-foreach(inp_file_name ${INP_FILES})
-    file(COPY "${inp_file_name}" DESTINATION "${CMAKE_BINARY_DIR}/tests")
-endforeach()
-
 function(add_stdutils_test name)
     add_executable(${name} ${name}.cpp)
     target_link_libraries (
