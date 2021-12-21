@@ -17,11 +17,17 @@ endif()
 
 function(add_stdutils_test name)
     add_executable(${name} ${name}.cpp)
-    target_link_libraries (
+    target_link_libraries(
         ${name} 
         stdutils::stdutils
         gtest_main
     ) 
+    target_compile_options(
+        ${name}
+        PRIVATE
+        "$<$<CONFIG:Debug>:${Stdutils_CXX_FLAGS_DEBUG}>"
+        "$<$<CONFIG:Release>:${Stdutils_CXX_FLAGS_RELEASE}>"
+    )
     add_test(NAME ${name} COMMAND ${name})
 endfunction()
 
