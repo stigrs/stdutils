@@ -17,7 +17,7 @@ regarding the licensing of GoogleTest.
 
 ### Requirements
 
-* [CMake](https://cmake.org) 3.14
+* [CMake](https://cmake.org) 3.13
 
 ### Supported Compilers
 
