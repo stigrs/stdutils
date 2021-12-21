@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.13)
 project(Stdutils 
     VERSION 1.0
     LANGUAGES CXX
@@ -19,7 +19,7 @@ if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(Stdutils_STANDALONE_PROJECT ON)
 endif()
 
-option(BUILD_TESTS "Build tests." ${Stdutils_STANDALONE_PROJECT})
+option(Stdutils_BUILD_TESTS "Build tests." ${Stdutils_STANDALONE_PROJECT})
 
 ################################################################################
 
@@ -108,7 +108,7 @@ install(FILES
 
 ################################################################################
 
-if(BUILD_TESTS)
+if(Stdutils_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
