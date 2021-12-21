@@ -36,6 +36,12 @@ endif()
 
 ################################################################################
 
+if(WIN32)
+    option(BUILD_SHARED_LIBS "Compile shared libraries." OFF)
+else()
+    option(BUILD_SHARED_LIBS "Compile shared libraries." ON)
+endif()
+
 # Check if C++20 standard is available.
 if("cxx_std_20" IN_LIST CMAKE_CXX_COMPILE_FEATURES)
     message(STATUS "Using C++20 standard")
@@ -56,9 +62,9 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(Stdutils_CXX_FLAGS_RELEASE "${Stdutils_CXX_FLAGS} -O3")
 endif()
 if(MSVC)
-    set(Stdutils_CXX_FLAGS /DWIN32 /D_WINDOWS /W4 /WX /wd4100 /GR /EHsc /MT /std:c++latest)
-    set(Stdutils_CXX_FLAGS_DEBUG ${Stdutils_CXX_FLAGS} /Zi /Od)
-    set(Stdutils_CXX_FLAGS_RELEASE ${Stdutils_CXX_FLAGS} /DNDEBUG /O2)
+    set(Stdutils_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX")
+    set(Stdutils_CXX_FLAGS_DEBUG "${Stdutils_CXX_FLAGS} /Zi /Od")
+    set(Stdutils_CXX_FLAGS_RELEASE "${Stdutils_CXX_FLAGS} /DNDEBUG /O2")
 endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
