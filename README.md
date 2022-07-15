@@ -1,5 +1,5 @@
 # Stdutils 
-[![Build Status](https://dev.azure.com/stigrs0020/stigrs/_apis/build/status/stigrs.stdutils?branchName=master)](https://dev.azure.com/stigrs0020/stigrs/_build/latest?definitionId=7&branchName=master)
+[![CMake](https://github.com/stigrs/stdutils/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/stigrs/stdutils/actions/workflows/cmake.yml)
 
 Stdutils extends the C++ standard library with a few utility methods.
 
@@ -23,9 +23,9 @@ regarding the licensing of GoogleTest.
 
 | Compiler      | Versions Tested |
 |:--------------|----------------:|
-| GCC           | 9               |
-| Clang         | 11              |
-| Visual Studio | VS2019          |
+| GCC           | 9, 10           |
+| Clang         | 10, 11, 12      |
+| Visual Studio | VS2019, VS2022  |
 | XCode         | 13.0            |
 
 ### Obtaining the Source Code
